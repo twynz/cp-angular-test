@@ -1,0 +1,33 @@
+<div class="row">
+  <div class="col">
+    <h1>Showing {{todoItemList.length}} Item(s)
+      <button id="refreshBtn" type="button" class="pull-right btn btn-primary" (click)="this.refresh()">Refresh</button>
+    </h1>
+    <table class="table table-striped table-bordered table-hover">
+      <thead>
+      <tr>
+        <th>Id</th>
+        <th>Description</th>
+        <th>Mark as Done</th>
+        <th>Action</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let todoItem of todoItemList">
+        <td>{{ todoItem.id }}</td>
+        <td>{{ todoItem.description }}</td>
+        <td>
+          <span>
+            <input type="checkbox" class="form-check-input" [id]="todoItem.id" (click)="onChangeIsCompleted(todoItem)"
+                   [checked]="todoItem.isCompleted">
+            {{ todoItem.isCompleted }}
+          </span>
+        </td>
+        <td>
+          <button [id]="'deleteBtn-' + todoItem.id" class="btn btn-danger btn-sm mx-3" (click)="onDelete(todoItem)">Delete</button>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</div>
